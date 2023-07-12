@@ -10,7 +10,6 @@ export default function Cart() {
       </div>
     )
   }
-const BASE_URL= process.env.BASE_URL
 
   // const handleRemove = (index)=>{
   //   console.log(index)
@@ -20,7 +19,7 @@ const BASE_URL= process.env.BASE_URL
   const handleCheckOut = async () => {
     let userEmail = localStorage.getItem("userEmail");
     // console.log(data,localStorage.getItem("userEmail"),new Date())
-    let response = await fetch("${BASE_URL}/api/orderData", {
+    let response = await fetch("http://localhost:5000/api/orderData", {
       // credentials: 'include',
       // Origin:"http://localhost:3000/login",
       method: 'POST',
