@@ -14,10 +14,10 @@ function App() {
       <Router>
         <div>
           <Routes>
-            <Route exact path="/" element={<Home />} />
-            <Route exact path="/login" element={<Login />} />
-            <Route exact path="/signup" element={<Signup />} />
-            <Route exact path="/myorder" element={<MyOrder />} />
+            <Route exact path="https://myfoodapp-kffs.onrender.com/" element={<Home />} />
+            <Route exact path="https://myfoodapp-kffs.onrender.com/login" element={<Login />} />
+            <Route exact path="https://myfoodapp-kffs.onrender.com/signup" element={<Signup />} />
+            <Route exact path="https://myfoodapp-kffs.onrender.com/myorder" element={<MyOrder />} />
           </Routes>
         </div>
       </Router>
