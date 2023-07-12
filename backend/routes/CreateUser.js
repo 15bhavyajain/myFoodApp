@@ -5,7 +5,7 @@ const bcrypt = require ("bcryptjs");
 const jwt = require("jsonwebtoken")
 const jwtSecret="myNameisBhavyaJainAndIamFromHere";
 const { body, validationResult } = require('express-validator');
-router.post("/createuser",[body('email').isEmail(),
+router.post("https://myfoodapp-kffs.onrender.com/createuser",[body('email').isEmail(),
 body('password',"wrong Password").isLength({ min: 4 })
 ], 
 async (req,res)=>{
@@ -31,7 +31,7 @@ async (req,res)=>{
     }
 })
 
-router.post("/loginuser",[body('email').isEmail(),
+router.post("https://myfoodapp-kffs.onrender.com/loginuser",[body('email').isEmail(),
 body('password',"wrong Password").isLength({ min: 4 })
 ], 
 async (req,res)=>{
