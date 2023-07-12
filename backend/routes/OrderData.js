@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Order = require('../models/Orders')
 
-router.post('https://myfoodapp-kffs.onrender.com/orderData', async (req, res) => {
+router.post('/orderData', async (req, res) => {
     let data = req.body.order_data
     await data.splice(0,0,{Order_date:req.body.order_date})
     console.log("1231242343242354",req.body.email)
@@ -40,7 +40,7 @@ router.post('https://myfoodapp-kffs.onrender.com/orderData', async (req, res) =>
     }
 })
 
-router.post('https://myfoodapp-kffs.onrender.com/myOrderData', async (req, res) => {
+router.post('/myOrderData', async (req, res) => {
     try {
         console.log(req.body.email)
         let eId = await Order.findOne({ 'email': req.body.email })
