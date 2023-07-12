@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Card from "../components/Card";
-const BASE_URL = process.env.BASE_URL
 export default function Home() {
 
 
@@ -12,7 +11,7 @@ export default function Home() {
 
   const loadData = async ()=>{
     
-    let response = await fetch("${BASE_URL}/api/foodData",{
+    let response = await fetch("http://localhost:5000/api/foodData",{
       method:"POST",
       headers:{
         'Content-Type' :'application/json'
