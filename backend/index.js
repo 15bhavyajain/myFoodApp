@@ -3,6 +3,8 @@ const app = express()
 const port = process.env.PORT || 5000
 const BASE_URL= process.env.BASE_URL;
 const mongoDB = require("./db")
+const cors = require('cors');  
+app.use(cors());
 mongoDB();
 
 app.use((req,res,next)=>{
