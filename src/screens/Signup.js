@@ -1,19 +1,12 @@
-import React, { useState } from "react";
-import { Link , useNavigate} from "react-router-dom";
-import Navbar from "../components/Navbar";
-
+import React, { useState } from 'react'
+import { useNavigate, Link } from 'react-router-dom'
+import Navbar from '../components/Navbar';
 export default function Signup() {
-    let navigate = useNavigate();
-    let [address, setAddress] = useState("");
-  const [credentials, setcredentials] = useState({
-    name: "",
-    email: "",
-    password: "",
-    geolocation: "",
-  });
-    
+  const [credentials, setCredentials] = useState({ name: "", email: "", password: "", geolocation: "" })
+  let [address, setAddress] = useState("");
+  let navigate = useNavigate()
 
-      const handleClick = async (e) => {
+  const handleClick = async (e) => {
     e.preventDefault();
     let navLocation = () => {
       return new Promise((res, rej) => {
@@ -41,43 +34,38 @@ export default function Signup() {
     setAddress(location);
     setCredentials({ ...credentials, [e.target.name]: location })
   }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(JSON.stringify({name: credentials.name,email: credentials.email,
-        password: credentials.password,
-        location: credentials.geolocation}))
     const response = await fetch("https://myfoodapp-kffs.onrender.com/api/createuser", {
+      // credentials: 'include',
+      // Origin:"http://localhost:3000/login",
       method: 'POST',
-      headers: {'Content-Type': 'application/json',
-               'Access-Control-Allow-Origin': '*' },
-      body: JSON.stringify({
-        name: credentials.name,
-        email: credentials.email,
-        password: credentials.password,
-        location: credentials.geolocation
-      })
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ name: credentials.name, email: credentials.email, password: credentials.password, location: credentials.geolocation })
+
     });
-
-    const json = await response.json();
+    const json = await response.json()
     console.log(json);
-    if (!json.success) {
-      alert("Enter valid credentials");
-    }
-    else
-    {
-        navigate("/login");
-    }
-    
-  };
+    if (json.success) {
+      //save the auth toke to local storage and redirect
+      localStorage.setItem('token', json.authToken)
+      navigate("/login")
 
-  const onChange = (event) => {
-    setcredentials({ ...credentials, [event.target.name]:event.target.value});
+    }
+    else {
+      alert("Enter Valid Credentials")
+    }
+  }
+
+  const onChange = (e) => {
+    setCredentials({ ...credentials, [e.target.name]: e.target.value })
   }
 
   return (
-    <> 
-    
-        <div style={{ backgroundImage: 'url("https://images.pexels.com/photos/1565982/pexels-photo-1565982.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")', backgroundSize: 'cover',height: '100vh' }}>
+    <div style={{ backgroundImage: 'url("https://images.pexels.com/photos/1565982/pexels-photo-1565982.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")', backgroundSize: 'cover',height: '100vh' }}>
       <div>
       <Navbar />
       </div>
@@ -110,7 +98,5 @@ export default function Signup() {
           </form>
         </div>
       </div>
-    </>
-  );
-  
+  )
 }
