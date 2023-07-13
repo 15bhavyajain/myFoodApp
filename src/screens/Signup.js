@@ -24,7 +24,8 @@ export default function Signup() {
     const response = await fetch("https://myfoodapp-kffs.onrender.com/api/getlocation", {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
       },
       body: JSON.stringify({ latlong: { lat, long } })
 
@@ -42,7 +43,8 @@ export default function Signup() {
       // Origin:"http://localhost:3000/login",
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
       },
       body: JSON.stringify({ name: credentials.name, email: credentials.email, password: credentials.password, location: credentials.geolocation })
 
