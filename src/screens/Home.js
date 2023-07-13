@@ -14,7 +14,8 @@ export default function Home() {
     let response = await fetch("https://myfoodapp-kffs.onrender.com/api/foodData",{
       method:"POST",
       headers:{
-        'Content-Type' :'application/json'
+        'Content-Type' :'application/json',
+        'Access-Control-Allow-Origin': '*' 
       }
     });
 
