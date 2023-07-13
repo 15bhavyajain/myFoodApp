@@ -16,7 +16,8 @@ export default function Login() {
     //     }))
     const response = await fetch("https://myfoodapp-kffs.onrender.com/api/loginuser", {
       method: 'POST',
-      headers: {'Content-Type': 'application/json'},
+      headers: {'Content-Type': 'application/json',
+               'Access-Control-Allow-Origin': '*' },
       body: JSON.stringify({
         email: credentials.email,
         password: credentials.password,
