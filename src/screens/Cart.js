@@ -24,7 +24,8 @@ export default function Cart() {
       // Origin:"http://localhost:3000/login",
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*' 
       },
       body: JSON.stringify({
         order_data: data,
