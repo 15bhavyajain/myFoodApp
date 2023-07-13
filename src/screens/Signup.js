@@ -18,7 +18,8 @@ export default function Signup() {
         location: credentials.geolocation}))
     const response = await fetch("https://myfoodapp-kffs.onrender.com/api/createuser", {
       method: 'POST',
-      headers: {'Content-Type': 'application/json'},
+      headers: {'Content-Type': 'application/json',
+               'Access-Control-Allow-Origin': '*' },
       body: JSON.stringify({
         name: credentials.name,
         email: credentials.email,
