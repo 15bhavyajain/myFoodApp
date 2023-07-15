@@ -92,11 +92,11 @@ export default function Home() {
 
                       </div>
                     )
-                  }) :""}
+                  }) :"Please wait while we load the food items for you"}
                      </div>
                 )
             })
-            : "================"
+            : "Please wait while we load the food items for you""
         }
       </div>
 
