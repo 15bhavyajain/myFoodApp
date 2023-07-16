@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Card from "../components/Card";
+import * as ReactBootStrap from 'react-bootstrap';
 export default function Home() {
 
 
   const [search , setSearch] =useState('');
   const [foodCat, setFoodCat] =useState([]);
   const [foodData,setFoodData] = useState([]);
+  const [loading,setloading] = useState(false);
 
   const loadData = async ()=>{
     
@@ -23,6 +25,7 @@ export default function Home() {
     setFoodData(response[0]);
     setFoodCat(response[1]);
     // console.log(response[0],response[1]);
+    setloading(true);
 
   }
     
@@ -69,36 +72,38 @@ export default function Home() {
 </div>
 
       </div>
+     {loading? 
       <div className='container'>
-        {
-            foodCat !==[]?
-            foodCat.map((data)=>{
-                return (
-                  <div className="row mb-3"> 
-                  <div key={data._id} className="fs-3 m-3 ">
-                     {data.CategoryName} 
-                     </div>
-                  <hr />
+      {
+          foodCat !==[]?
+          foodCat.map((data)=>{
+              return (
+                <div className="row mb-3"> 
+                <div key={data._id} className="fs-3 m-3 ">
+                   {data.CategoryName}
+                   
+                   </div>
+                <hr />
 
-                  {foodData !== []? foodData.filter((item)=>item.CategoryName === data.CategoryName && item.name.toLowerCase().includes(search.toLowerCase()))
-                  .map((filterItems)=>{
-                    return(
-                      <div key={filterItems._id} className="col-12 col-md-6 col-lg-3">
-                        
-                        <Card foodItem={filterItems}
-                        options={filterItems.options[0]}
-                        
-                        ></Card>
+                {foodData !== []? foodData.filter((item)=>item.CategoryName === data.CategoryName && item.name.toLowerCase().includes(search.toLowerCase()))
+                .map((filterItems)=>{
+                  return(
+                    <div key={filterItems._id} className="col-12 col-md-6 col-lg-3">
+                      <Card foodItem={filterItems}
+                      options={filterItems.options[0]}
+                      
+                      ></Card>
 
-                      </div>
-                    )
-                  }) :"Please wait while we load the food items for you"}
-                     </div>
-                )
-            })
-            : "Please wait while we load the food items for you"
-        }
-      </div>
+                    </div>
+                  )
+                }) :<div>"please wait"</div>}
+                   </div>
+              )
+          })
+          : <div>"please wait"</div>
+      }
+    </div>
+      : <div className="container text-center mt-3"> <ReactBootStrap.Spinner animations="border"/> </div>}
 
       <div>
         <Footer />
